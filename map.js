@@ -4,5 +4,6 @@ const map = new mapboxgl.Map({
     style: 'mapbox://styles/ksnifontova/clpzhwyfu003l01pl3ss9ap2c', // style URL
     center: [11.573617, 48.155559], // starting position [lng, lat]
     zoom: 10.5, // starting zoom
+    minZoom: 9,
     projection: 'albers' // projection
 });

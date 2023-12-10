@@ -5,14 +5,32 @@
     <meta charset="utf-8">
     <meta name="author" content="Kseniia Nifontova, Qianyi Cao">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet' />
 
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel='stylesheet' />
   </head>
 
   <body>
-    <div id='emap' style='width: 800px; height: 600px;'></div>
-    <script src="map.js"></script>
+    <div class="grid-container">
+      <header class="pageHeader">Emotion Map</header>
+
+      <div class="mainNav">
+      </div>
+
+      <div class="mainMap" id="emap">
+        <script src="map.js"></script>
+      </div>
+
+      <div class="mainDescr">
+      </div>
+
+      <footer class="pageFooter"></footer>
+      <footer class="mainSearch">
+        <!-- <input id="geo_search" placeholder="address" onkeypress="return forwardGeocoder(event)"> -->
+      </footer>
+
+    </div>
+
   </body>
 </html>
