@@ -7,19 +7,26 @@ body {
 /* class */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  /* grid-template-rows: repeat(5, 1fr); */
+  /* grid-template-columns: repeat(6, 1fr); */
+  grid-template-columns: 0.9fr 0.9fr 1fr 1fr 1fr 10px;
   grid-template-rows: 0.7fr 2fr 2fr 2fr 0.5fr;
+  gap: 10px;
   height: 100vh;
+  margin: -10px;
 }
 
 .pageHeader {
   grid-column: 1/7;
   grid-row: 1;
+  vertical-align: middle;
   background-color: #4f9c63;
-  color: #FFFFFF;
-  font-size: 50px;
+}
+
+.pageHeader > label {
   padding-left: 10px;
+  vertical-align: middle;
+  color: #FFFFFF;
+  font-size: 3vw;
 }
 
 .mainNav {
@@ -28,8 +35,10 @@ body {
 }
 
 .mainMap {
-  grid-column: 3/7;
+  /* grid-column: 3/7; */
+  grid-column: 3/6;
   grid-row: 2/5;
+  border-radius: 10px;
 }
 
 .mainDescr {
@@ -38,14 +47,15 @@ body {
 }
 
 .pageFooter {
-  grid-column: 1/5;
+  /* grid-column: 1/5; */
+  grid-column: 1/7;
   grid-row: 5;
 }
 
-.mainSearch {
+/* .mainSearch {
   grid-column: 5/7;
   grid-row: 5;
-}
+} */
 
 .mainNav, .mainDescr, .mainSearch, .pageFooter {
 	padding: 0px;
