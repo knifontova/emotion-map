@@ -18,6 +18,57 @@
       </header>
 
       <div class="mainNav">
+        <div class="navLabel" style="display:block">Emotion</div>
+        <div id="navEmotionType">
+          <label class='toggle-container'>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50%" cy="50%" r="3vw" fill="#FFD747"/>
+            </svg>
+            <div>happiness</div>
+            <input name='rtoggle' value='Heatmap-happiness' type='radio' onclick="emotion_change()" checked/>
+          </label>
+          <label class='toggle-container'>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50%" cy="50%" r="3vw" fill="#19455E"/>
+            </svg>
+            <div>sadness</div>
+            <input name='rtoggle' value='Heatmap-sadness' type='radio' onclick="emotion_change()"/>
+          </label>
+          <label class='toggle-container'>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50%" cy="50%" r="3vw" fill="#4BA0A5"/>
+            </svg>
+            <div>disgust</div>
+            <input name='rtoggle' value='Heatmap-disgust' type='radio' onclick="emotion_change()"/>
+          </label>
+          <label class='toggle-container'>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50%" cy="50%" r="3vw" fill="#F87C48"/>
+            </svg>
+            <div>surprise</div>
+            <input name='rtoggle' value='Heatmap-surprise' type='radio' onclick="emotion_change()"/>
+          </label>
+          <label class='toggle-container'>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50%" cy="50%" r="3vw" fill="#AB2377"/>
+            </svg>
+            <div>anger</div>
+            <input name='rtoggle' value='Heatmap-anger' type='radio' onclick="emotion_change()"/>
+          </label>
+          <label class='toggle-container'>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50%" cy="50%" r="3vw" fill="#5E69FF"/>
+            </svg>
+            <div>fear</div>
+            <input name='rtoggle' value='Heatmap-fear' type='radio' onclick="emotion_change()"/>
+          </label>
+        </div>
+
+        <div class="navLabel" style="display:block">About map</div>
+        <p>Voluptas non reiciendis consequatur aut ab qui voluptatem.
+          Corrupti deleniti temporibus omnis neque. Consequuntur quidem assumenda nam nobis ducimus sequi voluptatum.
+          Deleniti ducimus sit labore aut similique sit velit. Nihil velit illum aliquid.
+          Excepturi dolor accusantium aperiam eius laboriosam.</p>
       </div>
 
       <div class="mainMap" id="emap">

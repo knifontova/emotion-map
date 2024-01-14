@@ -42,6 +42,23 @@ body {
   grid-row: 2/4;
 }
 
+.navLabel {
+  padding: 1vw;
+  font-weight: bolder;
+}
+
+#navEmotionType {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1vw;
+}
+
+#navEmotionType > .toggle-container {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 0.2fr;
+  grid-gap: 2px;
+}
+
 .mainMap {
   /* grid-column: 3/7; */
   grid-column: 3/6;
@@ -69,6 +86,21 @@ body {
 	padding: 0px;
 	background-color: #FFFFFF;
 }
+
+
+
+/* #nav-grid {
+	display: grid;
+	grid-auto-rows: max-content;
+	grid-gap: 5px;
+}
+
+#inner_nav-grid {
+	display: grid;
+	grid-template-columns: 0.5fr 2fr 0.5fr;
+	align-items: center;
+	grid-auto-rows: 30px;
+} */
 
 #geo_search {
   padding-top: 10px;
