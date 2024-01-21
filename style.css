@@ -8,7 +8,7 @@ body {
 .grid-container {
   display: grid;
   /* grid-template-columns: repeat(6, 1fr); */
-  grid-template-columns: 0.9fr 0.9fr 1fr 1fr 1fr 10px;
+  grid-template-columns: 0.8fr 0.1fr 0.8fr 0.8fr 0.8fr 10px;
   grid-template-rows: 0.7fr 2fr 2fr 2fr 0.5fr;
   gap: 10px;
   height: 100vh;
@@ -42,12 +42,12 @@ body {
   grid-row: 2/4;
 }
 
-.navLabel {
+.mainLabel {
   padding: 1vw;
   font-weight: bolder;
 }
 
-#navEmotionType {
+.navElement {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 1vw;
@@ -58,6 +58,17 @@ body {
   grid-template-columns: 0.2fr 1fr 0.2fr;
   grid-gap: 2px;
 }
+
+/* #navEmotionDoor > .toggle-container {
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+  grid-gap: 2px;
+} */
+
+/* #navEmotionLegend {
+  display: grid;
+  grid-template-columns: repeat (5, 0.2fr);
+} */
 
 .mainMap {
   /* grid-column: 3/7; */
@@ -87,6 +98,11 @@ body {
 	background-color: #FFFFFF;
 }
 
+.mainDescr > p {
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
 
 
 /* #nav-grid {
@@ -105,4 +121,8 @@ body {
 #geo_search {
   padding-top: 10px;
   border-color: #4f9c63;
+}
+
+label > div {
+  vertical-align: middle;
 }
