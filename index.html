@@ -9,9 +9,14 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel='stylesheet' />
+    <script src="//d3js.org/d3.v3.min.js"></script>
   </head>
 
   <body>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
     <div class="grid-container">
       <header class="pageHeader" id="headerGrid">
           <label for="emotion">Emotion Map</label>
@@ -99,17 +104,14 @@
 
       <div class="mainDescr">
         <div class="mainLabel" style="display:block">About map</div>
-        <p>Voluptas non reiciendis consequatur aut ab qui voluptatem.
-          Corrupti deleniti temporibus omnis neque. Consequuntur quidem assumenda nam nobis ducimus sequi voluptatum.
-          Deleniti ducimus sit labore aut similique sit velit. Nihil velit illum aliquid.
-          Excepturi dolor accusantium aperiam eius laboriosam.</p>
-          <p><b>Data:</b> OpenStreetMap,<br>Survey on emotions in the city</p>
+        <p>The "Emotion Map" project is an interactive map to guide people across Munich and help them experience specific emotions.</p>
+        <p><b>Data:</b> OpenStreetMap,<br>
+          <a href="https://forms.gle/F8VA4BDEiEyDBjcZA" target="_blank">Survey on emotions in the city</a>
+        </p>
+        <p><b>Authors: </b>Qianyi Cao, Kseniia Nifontova</p>
       </div>
 
       <footer class="pageFooter"></footer>
-      <!-- <footer class="mainSearch">
-        <input id="geo_search" placeholder="address" onkeypress="return forwardGeocoder(event)">
-      </footer> -->
 
     </div>
 

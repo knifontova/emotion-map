@@ -59,16 +59,11 @@ body {
   grid-gap: 2px;
 }
 
-/* #navEmotionDoor > .toggle-container {
+#navEmotionDoor > .toggle-container {
   display: grid;
   grid-template-columns: 1fr 0.2fr;
   grid-gap: 2px;
-} */
-
-/* #navEmotionLegend {
-  display: grid;
-  grid-template-columns: repeat (5, 0.2fr);
-} */
+}
 
 .mainMap {
   /* grid-column: 3/7; */
@@ -125,4 +120,12 @@ body {
 
 label > div {
   vertical-align: middle;
+}
+
+p > b {
+  font-weight: 600;
+}
+
+a {
+  color: #4f9c63;
 }
