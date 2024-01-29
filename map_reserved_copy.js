@@ -8,10 +8,15 @@ const map = new mapboxgl.Map({
     projection: 'albers' // projection
 });
 
+// Add the control to the map.
+map.addControl(
+  new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  })
+);
 
-// Geocoder – https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/
-
-const zoomThreshold = 14;
+const zoomThreshold = 13;
 
 // Layers loading
 map.on('style.load', function() {
@@ -27,15 +32,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'visible',
-  //   'filter': [
-  //     "all",
-  //     ["match",
-  //     ["get", "alone_company"],
-  //     ["1", "3", "2", "99"],
-  //     true,
-  //     false
-  //   ]
-  // ],
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Happiness"],
+        0.2
+      ]
+    ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -44,9 +48,9 @@ map.on('style.load', function() {
         ["get", "Happiness"],
         0,
         0,
-        0.3,
+        0.4,
         0.5,
-        0.95,
+        0.75,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -69,9 +73,9 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Happiness"],
           0,
-          2,
-          0.95,
-          4
+          1,
+          0.8,
+          2
         ],
         13,
         [
@@ -79,9 +83,9 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Happiness"],
           0,
-          2,
-          0.95,
-          7
+          3,
+          0.8,
+          10
         ],
         22,
         [
@@ -90,11 +94,11 @@ map.on('style.load', function() {
           ["get", "Happiness"],
           0,
           5,
-          0.95,
+          0.8,
           40
         ]
       ],
-      'heatmap-opacity': 0.75
+      'heatmap-opacity': 0.6
     },
     'source-layer': 'p_Munich_merged-62mari',
   });
@@ -104,6 +108,14 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'none',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Happiness"],
+        0.2
+      ]
+    ],
     'minzoom': zoomThreshold,
     'paint': {
       'circle-color': "#ffd747",
@@ -121,11 +133,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          1,
-          0.5,
           2,
-          0.95,
-          4
+          0.4,
+          4,
+          0.8,
+          6
         ],
         17,
         [
@@ -135,11 +147,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          2,
-          0.5,
-          4,
-          0.95,
-          8
+          3,
+          0.4,
+          6,
+          0.8,
+          10
         ],
         22,
         [
@@ -149,13 +161,15 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          4,
-          0.5,
           6,
-          0.95,
-          12
+          0.4,
+          10,
+          0.8,
+          20
         ]
       ],
+      'circle-stroke-width': 1,
+      'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
@@ -166,6 +180,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Sadness"],
+        0.2
+      ]
+    ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -174,9 +196,9 @@ map.on('style.load', function() {
         ["get", "Sadness"],
         0,
         0,
-        0.3,
+        0.1,
         0.5,
-        0.95,
+        0.65,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -200,7 +222,7 @@ map.on('style.load', function() {
           ["get", "Sadness"],
           0,
           1,
-          0.95,
+          0.8,
           2
         ],
         13,
@@ -209,9 +231,9 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Sadness"],
           0,
-          1,
-          0.95,
-          7
+          3,
+          0.8,
+          10
         ],
         22,
         [
@@ -220,7 +242,7 @@ map.on('style.load', function() {
           ["get", "Sadness"],
           0,
           5,
-          0.95,
+          0.8,
           40
         ]
       ],
@@ -234,6 +256,14 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Sadness"],
+        0.2
+      ]
+    ],
     'minzoom': zoomThreshold,
     'paint': {
       'circle-color': "#19455E",
@@ -251,11 +281,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          1,
-          0.5,
           2,
-          0.95,
-          4
+          0.4,
+          4,
+          0.8,
+          6
         ],
         17,
         [
@@ -265,11 +295,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          2,
-          0.5,
-          4,
-          0.95,
-          8
+          3,
+          0.4,
+          6,
+          0.8,
+          10
         ],
         22,
         [
@@ -279,13 +309,15 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          4,
-          0.5,
           6,
-          0.95,
-          12
+          0.4,
+          10,
+          0.8,
+          20
         ]
       ],
+      'circle-stroke-width': 1,
+      'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
@@ -296,6 +328,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Disgust"],
+        0.2
+      ]
+    ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -304,9 +344,9 @@ map.on('style.load', function() {
         ["get", "Disgust"],
         0,
         0,
-        0.3,
-        1,
-        0.95,
+        0.05,
+        0.5,
+        0.5,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -330,7 +370,7 @@ map.on('style.load', function() {
           ["get", "Disgust"],
           0,
           1,
-          0.95,
+          0.8,
           2
         ],
         13,
@@ -339,9 +379,9 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Disgust"],
           0,
-          1,
-          0.95,
-          7
+          3,
+          0.8,
+          10
         ],
         22,
         [
@@ -349,12 +389,12 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Disgust"],
           0,
-          5,
-          0.95,
+          10,
+          0.8,
           40
         ]
       ],
-      'heatmap-opacity': 0.9
+      'heatmap-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
   });
@@ -364,6 +404,14 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Disgust"],
+        0.2
+      ]
+    ],
     'minzoom': zoomThreshold,
     'paint': {
       'circle-color': "#4BA0A5",
@@ -381,11 +429,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          1,
-          0.5,
           2,
-          0.95,
-          4
+          0.4,
+          4,
+          0.8,
+          6
         ],
         17,
         [
@@ -395,11 +443,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          2,
-          0.5,
-          4,
-          0.95,
-          8
+          3,
+          0.4,
+          6,
+          0.8,
+          10
         ],
         22,
         [
@@ -409,13 +457,15 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          4,
-          0.5,
           6,
-          0.95,
-          12
+          0.4,
+          10,
+          0.8,
+          20
         ]
       ],
+      'circle-stroke-width': 1,
+      'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
@@ -426,6 +476,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Surprise"],
+        0.2
+      ]
+    ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -434,9 +492,9 @@ map.on('style.load', function() {
         ["get", "Surprise"],
         0,
         0,
-        0.3,
+        0.1,
         0.5,
-        0.95,
+        0.25,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -460,7 +518,7 @@ map.on('style.load', function() {
           ["get", "Surprise"],
           0,
           1,
-          0.95,
+          0.8,
           2
         ],
         13,
@@ -469,9 +527,9 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Surprise"],
           0,
-          1,
-          0.95,
-          7
+          3,
+          0.8,
+          10
         ],
         22,
         [
@@ -480,11 +538,11 @@ map.on('style.load', function() {
           ["get", "Surprise"],
           0,
           5,
-          0.95,
+          0.8,
           40
         ]
       ],
-      'heatmap-opacity': 0.9
+      'heatmap-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
   });
@@ -494,6 +552,14 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Surprise"],
+        0.2
+      ]
+    ],
     'minzoom': zoomThreshold,
     'paint': {
       'circle-color': "#F87C48",
@@ -511,11 +577,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          1,
-          0.5,
           2,
-          0.95,
-          4
+          0.4,
+          4,
+          0.8,
+          6
         ],
         17,
         [
@@ -525,11 +591,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          2,
-          0.5,
-          4,
-          0.95,
-          8
+          3,
+          0.4,
+          6,
+          0.8,
+          10
         ],
         22,
         [
@@ -539,13 +605,15 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          4,
-          0.5,
           6,
-          0.95,
-          12
+          0.4,
+          10,
+          0.8,
+          20
         ]
       ],
+      'circle-stroke-width': 1,
+      'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
@@ -555,6 +623,14 @@ map.on('style.load', function() {
     'id': 'Heatmap-anger',
     'type': 'heatmap',
     'source': 'emotions',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Anger"],
+        0.2
+      ]
+    ],
     'visibility': 'none',
     'maxzoom': zoomThreshold,
     'paint': {
@@ -564,9 +640,9 @@ map.on('style.load', function() {
         ["get", "Anger"],
         0,
         0,
-        0.3,
-        1,
-        0.95,
+        0.1,
+        0.5,
+        0.55,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -590,7 +666,7 @@ map.on('style.load', function() {
           ["get", "Anger"],
           0,
           1,
-          0.95,
+          0.8,
           2
         ],
         13,
@@ -599,9 +675,9 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Anger"],
           0,
-          1,
-          0.95,
-          7
+          3,
+          0.8,
+          10
         ],
         22,
         [
@@ -610,11 +686,11 @@ map.on('style.load', function() {
           ["get", "Anger"],
           0,
           5,
-          0.95,
+          0.8,
           40
         ]
       ],
-      'heatmap-opacity': 0.9
+      'heatmap-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
   });
@@ -624,6 +700,14 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Anger"],
+        0.2
+      ]
+    ],
     'minzoom': zoomThreshold,
     'paint': {
       'circle-color': "#AB2377",
@@ -641,11 +725,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          1,
-          0.5,
           2,
-          0.95,
-          4
+          0.4,
+          4,
+          0.8,
+          6
         ],
         17,
         [
@@ -655,11 +739,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          2,
-          0.5,
-          4,
-          0.95,
-          8
+          3,
+          0.4,
+          6,
+          0.8,
+          10
         ],
         22,
         [
@@ -669,13 +753,15 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          4,
-          0.5,
           6,
-          0.95,
-          12
+          0.4,
+          10,
+          0.8,
+          20
         ]
       ],
+      'circle-stroke-width': 1,
+      'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
@@ -686,6 +772,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Fear"],
+        0.2
+      ]
+    ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -694,9 +788,9 @@ map.on('style.load', function() {
         ["get", "Fear"],
         0,
         0,
-        0.3,
+        0.1,
         0.5,
-        0.95,
+        0.8,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -720,7 +814,7 @@ map.on('style.load', function() {
           ["get", "Fear"],
           0,
           1,
-          0.95,
+          0.8,
           2
         ],
         13,
@@ -729,9 +823,9 @@ map.on('style.load', function() {
           ["linear"],
           ["get", "Fear"],
           0,
-          1,
+          3,
           0.95,
-          7
+          10
         ],
         22,
         [
@@ -740,7 +834,7 @@ map.on('style.load', function() {
           ["get", "Fear"],
           0,
           5,
-          0.95,
+          0.8,
           40
         ]
       ],
@@ -754,6 +848,14 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
+    'filter': [
+      "all",
+      [
+        ">=",
+        ["get", "Fear"],
+        0.2
+      ]
+    ],
     'minzoom': zoomThreshold,
     'paint': {
       'circle-color': "#5E69FF",
@@ -771,11 +873,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          1,
-          0.5,
           2,
-          0.95,
-          4
+          0.4,
+          4,
+          0.8,
+          6
         ],
         17,
         [
@@ -785,11 +887,11 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          2,
-          0.5,
-          4,
-          0.95,
-          8
+          3,
+          0.4,
+          6,
+          0.8,
+          10
         ],
         22,
         [
@@ -799,19 +901,21 @@ map.on('style.load', function() {
           0,
           0,
           0.2,
-          4,
-          0.5,
           6,
-          0.95,
-          12
+          0.4,
+          10,
+          0.8,
+          20
         ]
       ],
+      'circle-stroke-width': 1,
+      'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
   });
 
-  // company_filter();
+  door_filter();
 
 });
 
@@ -819,6 +923,15 @@ map.on('style.load', function() {
 const emotionLayers = ['Heatmap-happiness', 'Heatmap-sadness', 'Heatmap-disgust', 'Heatmap-surprise', 'Heatmap-anger', 'Heatmap-fear',
                       'Point-happiness', 'Point-sadness', 'Point-disgust', 'Point-surprise', 'Point-anger', 'Point-fear'];
 const emotionPointLayers = ['Point-happiness', 'Point-sadness', 'Point-disgust', 'Point-surprise', 'Point-anger', 'Point-fear'];
+
+// Define global variables to keep track of the current emotion and filter mode
+var currentEmotion = "happiness"; // Set the initial emotion
+var currentFilterMode = "all"; // Set the initial filter mode
+
+
+
+
+
 
 function emotion_change() {
   var emotion_type = document.querySelector('input[name="rtoggle"]:checked').value;
@@ -844,202 +957,41 @@ function emotion_change() {
                     emotionLayers.forEach(function(layerId, index) {
                       map.setLayoutProperty(layerId, 'visibility', emotionMap[emotion_type][index]);
                     });
-                  };
+
+                    currentEmotion = emotion_type;
+                    door_filter();
+
+};
 
 
-// function emotion_change() {
-//   var emotion_type = document.querySelector('input[name="rtoggle"]:checked').value;
-//   console.log(emotion_type);
-//
-//   var happiness_id = 'Heatmap-happiness';
-//   var sadness_id = 'Heatmap-sadness';
-//   var disgust_id = 'Heatmap-disgust';
-//   var surprise_id = 'Heatmap-surprise';
-//   var anger_id = 'Heatmap-anger';
-//   var fear_id = 'Heatmap-fear';
-//   var happiness_id2 = 'Point-happiness';
-//   var sadness_id2 = 'Point-sadness';
-//   var disgust_id2 = 'Point-disgust';
-//   var surprise_id2 = 'Point-surprise';
-//   var anger_id2 = 'Point-anger';
-//   var fear_id2 = 'Point-fear';
-//   //
-//   if (emotion_type === "happiness") {
-//     map.setLayoutProperty(happiness_id, 'visibility', 'visible');
-//     map.setLayoutProperty(sadness_id, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id, 'visibility', 'none');
-//     map.setLayoutProperty(happiness_id2, 'visibility', 'visible');
-//     map.setLayoutProperty(sadness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id2, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id2, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id2, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id2, 'visibility', 'none');
-//   } else if (emotion_type === "sadness") {
-//     map.setLayoutProperty(happiness_id, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id, 'visibility', 'visible');
-//     map.setLayoutProperty(disgust_id, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id, 'visibility', 'none');
-//     map.setLayoutProperty(happiness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id2, 'visibility', 'visible');
-//     map.setLayoutProperty(disgust_id2, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id2, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id2, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id2, 'visibility', 'none');
-//   } else if (emotion_type === "disgust") {
-//     map.setLayoutProperty(happiness_id, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id, 'visibility', 'visible');
-//     map.setLayoutProperty(surprise_id, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id, 'visibility', 'none');
-//     map.setLayoutProperty(happiness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id2, 'visibility', 'visible');
-//     map.setLayoutProperty(surprise_id2, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id2, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id2, 'visibility', 'none');
-//   } else if (emotion_type === "surprise") {
-//     map.setLayoutProperty(happiness_id, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id, 'visibility', 'visible');
-//     map.setLayoutProperty(anger_id, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id, 'visibility', 'none');
-//     map.setLayoutProperty(happiness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id2, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id2, 'visibility', 'visible');
-//     map.setLayoutProperty(anger_id2, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id2, 'visibility', 'none');
-//   } else if (emotion_type === "anger") {
-//     map.setLayoutProperty(happiness_id, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id, 'visibility', 'visible');
-//     map.setLayoutProperty(fear_id, 'visibility', 'none');
-//     map.setLayoutProperty(happiness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id2, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id2, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id2, 'visibility', 'visible');
-//     map.setLayoutProperty(fear_id2, 'visibility', 'none');
-//   } else if (emotion_type === "fear") {
-//     map.setLayoutProperty(happiness_id, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id, 'visibility', 'visible');
-//     map.setLayoutProperty(happiness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(sadness_id2, 'visibility', 'none');
-//     map.setLayoutProperty(disgust_id2, 'visibility', 'none');
-//     map.setLayoutProperty(surprise_id2, 'visibility', 'none');
-//     map.setLayoutProperty(anger_id2, 'visibility', 'none');
-//     map.setLayoutProperty(fear_id2, 'visibility', 'visible');
-//   }
-// };
+function door_filter() {
+  var filterMode = document.querySelector('input[name="toggle-door"]:checked').value;
 
-// function company_change() {
-//   var filterValue = document.querySelector('input[name="toggle-company"]:checked').value;
-//   console.log(filterValue);
-//
-//   var filter = ['==', 'alone', alone]; // Change 'column1' to your actual column name
-//   map.setFilter('Heatmap-happiness', filter);
-//   map.setFilter('Heatmap-sadness', filter);
-//   map.setFilter('Heatmap-disgust', filter);
-//   map.setFilter('Heatmap-surprise', filter);
-//   map.setFilter('Heatmap-anger', filter);
-//   map.setFilter('Heatmap-fear', filter);
-//   // Repeat for other layers
-//
-//   var filter = ['==', ['==', ['get', 'company'], 1], company]; // Change 'column1' to your actual column name
-//   map.setFilter('Heatmap-happiness', filter);
-//   map.setFilter('Heatmap-sadness', filter);
-//   map.setFilter('Heatmap-disgust', filter);
-//   map.setFilter('Heatmap-surprise', filter);
-//   map.setFilter('Heatmap-anger', filter);
-//   map.setFilter('Heatmap-fear', filter);
-//
-//   var filter = ['==', 'company', all]; // Change 'column1' to your actual column name
-//   map.setFilter('Heatmap-happiness', filter);
-//   map.setFilter('Heatmap-sadness', filter);
-//   map.setFilter('Heatmap-disgust', filter);
-//   map.setFilter('Heatmap-surprise', filter);
-//   map.setFilter('Heatmap-anger', filter);
-//   map.setFilter('Heatmap-fear', filter);
-//
-//   console.log(filter);
-// };
+  var filter;
+  if (filterMode === 'all') {
+    // Reset the filter for all layers when 'all' is selected
+    emotionLayers.forEach(function (layerId) {
+      map.setFilter(layerId, null);
+    });
+  } else {
+    filter = ['match', ['get', 'indoor_outdoor'], 2, filterMode === 'outdoor', filterMode === 'indoor'];
 
+    // Apply the filter to all layers except for those with 'Heatmap' in their IDs
+    emotionLayers.forEach(function (layerId) {
+      if (!layerId.includes('Heatmap')) {
+        map.setFilter(layerId, filter);
+      }
+    });
+  }
 
-// function company_filter() {
-//   var filterMode = document.querySelector('input[name="toggle-company"]:checked').value;
-//   var filter = ['==', ['get', 'alone_company'], parseInt(filterValue)];
-//
-//   emotionLayers.forEach(function(layerId, index) {
-//   map.setFilter(layerId, filter);
-//   });
-// };
+  // Update the global variable with the current filter mode
+  currentFilterMode = filterMode;
+  // Apply the filter based on the current emotion
+  emotionLayers.forEach(function (layerId, index) {
+    map.setFilter(layerId, emotionMap[currentEmotion][index]);
+  });
 
-// function door_filter() {
-//   var filterMode = document.querySelector('input[name="toggle-door"]:checked').value;
-//
-//   var filter;
-//   if (filterMode === 'all') {
-//     filter = ['!=', ['string', ['get', 'indoor_ourdoor']], 'none'];
-//   } else {
-//     filter = ['match', ['get', 'indoor_ourdoor'], 1, filterMode === 'indoor', filterMode === 'outdoor'];
-//   }
-//
-//   console.log(filter);
-//
-//
-//   // Apply the filter to all layers
-//   emotionLayers.forEach(function(layerId) {
-//     map.setFilter(layerId, filter);
-//   });
-// };
-
-
-// document.getElementById('navEmotionCompany').addEventListener('change', (event) => {
-//   const company = event.target.value;
-//   // update the map filter
-//   if (company === 'all') {
-//     filterCompany = ["all", ["match", ["get", "alone_company"], ["1", "3", "2", "99"],true, false]];
-//   } else if (company === 'alone') {
-//     filterCompany = ['match', ['get', 'alone_company'], ["1", "3"], true, false];
-//   } else if (company === 'company') {
-//     filterCompany = ['match', ['get', 'alone_company'], ["1", "3"], false, true];
-//   } else {
-//     console.log('error');
-//   }
-//
-//   // emotionLayers.forEach(function(layerId, index) {
-//   //   // Check if the layer is a heatmap
-//   //   const isHeatmap = map.getLayer(layerId).type === 'heatmap';
-//   //
-//   //   if (isHeatmap) {
-//   //     // Adjust heatmap-weight property for heatmap layers
-//   //     map.setPaintProperty(layerId, 'filter', filterCompany);
-//   //   } else {
-//   //     // For point layers, use setFilter
-//   //     map.setFilter(layerId, ['all', filterCompany]);
-//   //   }
-//   // });
-//
-//   emotionLayers.forEach(function(layerId, index) {
-//     map.setFilter(layerId, ['all', filterCompany]);
-//   });
-//
-// });
-
-///https://docs.mapbox.com/help/tutorials/show-changes-over-time/
+};
 
 emotionPointLayers.forEach(function(layerId, index){
   map.on('click', layerId, function(e) {

@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel='stylesheet' />
-    <script src="//d3js.org/d3.v3.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto:wght@400&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -30,42 +32,42 @@
                 <circle cx="50%" cy="50%" r="2vw" fill="#FFD747"/>
             </svg>
             <div>happiness</div>
-            <input name='rtoggle' value='happiness' type='radio' onclick="emotion_change();" checked/>
+            <input name='rtoggle' value='happiness' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="emotion_change();" checked/>
           </label>
           <label class='toggle-container'>
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50%" cy="50%" r="2vw" fill="#19455E"/>
             </svg>
             <div>sadness</div>
-            <input name='rtoggle' value='sadness' type='radio' onclick="emotion_change();"/>
+            <input name='rtoggle' value='sadness' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="emotion_change();"/>
           </label>
           <label class='toggle-container'>
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50%" cy="50%" r="2vw" fill="#4BA0A5"/>
             </svg>
             <div>disgust</div>
-            <input name='rtoggle' value='disgust' type='radio' onclick="emotion_change();"/>
+            <input name='rtoggle' value='disgust' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="emotion_change();"/>
           </label>
           <label class='toggle-container'>
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50%" cy="50%" r="2vw" fill="#F87C48"/>
             </svg>
             <div>surprise</div>
-            <input name='rtoggle' value='surprise' type='radio' onclick="emotion_change();"/>
+            <input name='rtoggle' value='surprise' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="emotion_change();"/>
           </label>
           <label class='toggle-container'>
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50%" cy="50%" r="2vw" fill="#AB2377"/>
             </svg>
             <div>anger</div>
-            <input name='rtoggle' value='anger' type='radio' onclick="emotion_change();"/>
+            <input name='rtoggle' value='anger' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="emotion_change();"/>
           </label>
           <label class='toggle-container'>
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50%" cy="50%" r="2vw" fill="#5E69FF"/>
             </svg>
             <div>fear</div>
-            <input name='rtoggle' value='fear' type='radio' onclick="emotion_change();"/>
+            <input name='rtoggle' value='fear' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="emotion_change();"/>
           </label>
         </div>
 
@@ -80,21 +82,21 @@
           </svg>
         </div> -->
 
-        <!-- <div class="mainLabel" style="display:block">Additional filters</div>
+        <div class="mainLabel" style="display:block">Outdoor or indoor activity</div>
         <div class="navElement" id="navEmotionDoor">
           <label class='toggle-container'>
             <div>outdoor</div>
-            <input name='toggle-door' id='outdoor' value='outdoor' type='radio' onclick="door_filter()"/>
+            <input name='toggle-door' id='outdoor' value='outdoor' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="door_filter()" />
           </label>
           <label class='toggle-container'>
             <div>indoor</div>
-            <input name='toggle-door' id='indoor' value='indoor' type='radio' onclick="door_filter()"/>
+            <input name='toggle-door' id='indoor' value='indoor' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="door_filter()"/>
           </label>
           <label class='toggle-container'>
             <div>doesn't matter</div>
-            <input name='toggle-door' id='all' value='all' type='radio' onclick="door_filter()" checked/>
+            <input name='toggle-door' id='all' value='all' type='radio' style="height:15px; width:15px; vertical-align: middle;" onclick="door_filter()" checked/>
           </label>
-        </div> -->
+        </div>
 
       </div>
 
@@ -104,7 +106,7 @@
 
       <div class="mainDescr">
         <div class="mainLabel" style="display:block">About map</div>
-        <p>The "Emotion Map" project is an interactive map to guide people across Munich and help them experience specific emotions.</p>
+        <p>This is an interactive map designed to guide people through the city of Munich in order to help them experience certain emotions.</p>
         <p><b>Data:</b> OpenStreetMap,<br>
           <a href="https://forms.gle/F8VA4BDEiEyDBjcZA" target="_blank">Survey on emotions in the city</a>
         </p>

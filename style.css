@@ -1,6 +1,10 @@
 /* element */
 body {
-  font-family: "Gill Sans", sans-serif;
+  /* font-family: "Gill Sans", sans-serif; */
+  /* font-family: "Tahoma", sans-serif; */
+  font-family: "Verdana", sans-serif;
+  /* font-family: "Futura", "Century Gothic", sans-serif; */
+  /* font-family: "Avenir", Candara, sans-serif; */
   color: #000000;
 }
 
@@ -25,7 +29,7 @@ body {
 #headerGrid {
   display: grid;
   grid-template-columns: 0.2fr 2fr 5fr;
-  grid-template-rows: 0.2fr 1fr 0.2fr;
+  grid-template-rows: 0.2fr 0.7fr 0.1fr;
 }
 
 #headerGrid > label {
@@ -98,28 +102,13 @@ body {
   padding-right: 1vw;
 }
 
-
-
-/* #nav-grid {
-	display: grid;
-	grid-auto-rows: max-content;
-	grid-gap: 5px;
-}
-
-#inner_nav-grid {
-	display: grid;
-	grid-template-columns: 0.5fr 2fr 0.5fr;
-	align-items: center;
-	grid-auto-rows: 30px;
-} */
-
-#geo_search {
-  padding-top: 10px;
-  border-color: #4f9c63;
-}
-
 label > div {
   vertical-align: middle;
+  font-size: 14px;
+}
+
+p {
+  font-size: 14px;
 }
 
 p > b {

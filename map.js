@@ -16,7 +16,7 @@ map.addControl(
   })
 );
 
-const zoomThreshold = 15;
+const zoomThreshold = 13;
 
 // Layers loading
 map.on('style.load', function() {
@@ -923,6 +923,12 @@ map.on('style.load', function() {
 const emotionLayers = ['Heatmap-happiness', 'Heatmap-sadness', 'Heatmap-disgust', 'Heatmap-surprise', 'Heatmap-anger', 'Heatmap-fear',
                       'Point-happiness', 'Point-sadness', 'Point-disgust', 'Point-surprise', 'Point-anger', 'Point-fear'];
 const emotionPointLayers = ['Point-happiness', 'Point-sadness', 'Point-disgust', 'Point-surprise', 'Point-anger', 'Point-fear'];
+const emotionHeatmapLayers = ['Heatmap-happiness', 'Heatmap-sadness', 'Heatmap-disgust', 'Heatmap-surprise', 'Heatmap-anger', 'Heatmap-fear'];
+
+// Define global variables to keep track of the current emotion and filter mode
+var currentEmotion = "happiness"; // Set the initial emotion
+var currentFilterMode = "all"; // Set the initial filter mode
+
 
 function emotion_change() {
   var emotion_type = document.querySelector('input[name="rtoggle"]:checked').value;
@@ -948,25 +954,74 @@ function emotion_change() {
                     emotionLayers.forEach(function(layerId, index) {
                       map.setLayoutProperty(layerId, 'visibility', emotionMap[emotion_type][index]);
                     });
-                  };
+
+                    currentEmotion = emotion_type;
+                    door_filter();
+
+};
+
 
 function door_filter() {
   var filterMode = document.querySelector('input[name="toggle-door"]:checked').value;
 
   var filter;
   if (filterMode === 'all') {
-    filter = ['match', ['get', 'indoor_outdoor'], 2, filterMode === 'outdoor', filterMode === 'indoor'];
+    // Reset the filter for all layers when 'all' is selected
+    emotionLayers.forEach(function (layerId) {
+      map.setFilter(layerId, null);
+    });
   } else {
-    filter = ['!=', ['string', ['get', 'indoor_outdoor']], 'none'];
+    filter = ['match', ['get', 'indoor_outdoor'], 2, filterMode === 'outdoor', filterMode === 'indoor'];
+
+    // Apply the filter to all layers except for those with 'Heatmap' in their IDs
+    emotionLayers.forEach(function (layerId) {
+      if (!layerId.includes('Heatmap')) {
+        map.setFilter(layerId, filter);
+      }
+    });
   }
 
-  // Apply the filter to all layers
-  emotionLayers.forEach(function(layerId) {
-    map.setFilter(layerId, filter);
+  // Update the global variable with the current filter mode
+  currentFilterMode = filterMode;
+  // Apply the filter based on the current emotion
+  emotionLayers.forEach(function (layerId, index) {
+    map.setFilter(layerId, emotionMap[currentEmotion][index]);
   });
+
 };
 
-///https://docs.mapbox.com/help/tutorials/show-changes-over-time/
+// function door_filter() {
+//   var filterMode = document.querySelector('input[name="toggle-door"]:checked').value;
+//
+//   var filter;
+//   if (filterMode === 'all') {
+//     // Reset the filter for all layers when 'all' is selected
+//     emotionLayers.forEach(function (layerId) {
+//       map.setFilter(layerId, null);
+//     });
+//     // Adjust the heatmap opacity to make it fully visible when 'all' is selected
+//     map.setPaintProperty(emotionHeatmapLayers, 'heatmap-opacity', 0.6);
+//   } else {
+//     filter = ['match', ['get', 'indoor_outdoor'], 2, filterMode === 'outdoor', filterMode === 'indoor'];
+//
+//     // Apply the filter to all layers except for those with 'Heatmap' in their IDs
+//     emotionLayers.forEach(function (layerId) {
+//       if (!layerId.includes('Heatmap')) {
+//         map.setFilter(layerId, filter);
+//       }
+//     });
+//
+//     // Adjust the heatmap opacity to make it partially visible when filtered
+//     map.setPaintProperty(emotionHeatmapLayers, 'heatmap-opacity', 0.2);
+//   }
+//
+//   // Update the global variable with the current filter mode
+//   currentFilterMode = filterMode;
+//   // Apply the filter based on the current emotion
+//   emotionLayers.forEach(function (layerId, index) {
+//     map.setFilter(layerId, emotionMap[currentEmotion][index]);
+//   });
+// };
 
 emotionPointLayers.forEach(function(layerId, index){
   map.on('click', layerId, function(e) {
@@ -997,61 +1052,3 @@ emotionPointLayers.forEach(function(layerId, index){
   });
 
 });
-
-// function createStackedChart() {
-//   // Your D3 code to create the stacked chart
-//   // This is a basic example; customize it based on your data and requirements
-//
-//   var svg = d3.selectAll("#chart")
-//     .append("svg")
-//     .attr("width", "100%")
-//     .attr("height", "100%");
-//
-//     var div = d3.selectAll("#chart").append("div")
-//     .attr("class", "tooltip_emo")
-//     .style("opacity", 0);
-//                 console.log(svg);
-//
-//   // var data = /* Your data here */;
-//
-//   // Use D3's stack function to convert the data into a stacked format
-//   var stack = d3.stack()
-//     .keys(["column1", "column2", "column3", "column4", "column5", "column6"]);
-//
-//   var stackedData = stack(data);
-//
-//   // Create scales and axes based on your data
-//
-//   // Add rectangles for each data point
-//   svg.selectAll("g")
-//     .data(stackedData)
-//     .enter().append("g")
-//     .attr("fill", function (d) { return color(d.key); })
-//     .selectAll("rect")
-//     .data(function (d) { return d; })
-//     .enter().append("rect")
-//     .attr("x", function (d) { return xScale(d.data.date); })
-//     .attr("y", function (d) { return yScale(d[1]); })
-//     .attr("height", function (d) { return yScale(d[0]) - yScale(d[1]); })
-//     .attr("width", /* Set the width based on your data */);
-//
-//   // Add tooltips on hover
-//   svg.selectAll("rect")
-//     .on("mouseover", function (event, d) {
-//       // Show tooltip with the value of the hovered column
-//       // Customize this based on your data and requirements
-//       var tooltipText = d[1] - d[0]; // Example: You might want to format the value
-//       tooltip.transition()
-//         .duration(200)
-//         .style("opacity", .9);
-//       tooltip.html(tooltipText)
-//         .style("left", (event.pageX) + "px")
-//         .style("top", (event.pageY - 28) + "px");
-//     })
-//     .on("mouseout", function (d) {
-//       // Hide tooltip on mouseout
-//       tooltip.transition()
-//         .duration(500)
-//         .style("opacity", 0);
-//     });
-// };
