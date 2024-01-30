@@ -32,14 +32,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'visible',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Happiness"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Happiness"],
+    //     0.2
+    //   ]
+    // ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -48,8 +48,8 @@ map.on('style.load', function() {
         ["get", "Happiness"],
         0,
         0,
-        0.4,
-        0.5,
+        0.2,
+        0,
         0.75,
         2
       ],
@@ -59,6 +59,8 @@ map.on('style.load', function() {
         ["linear"],
         ["heatmap-density"],
         0,
+        "rgba(0, 0, 255, 0)",
+        0.2,
         "rgba(0, 0, 255, 0)",
         1,
         "#ffd747"
@@ -72,9 +74,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Happiness"],
-          0,
+          0.2,
           1,
-          0.8,
+          0.75,
           2
         ],
         13,
@@ -82,9 +84,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Happiness"],
-          0,
+          0.2,
           3,
-          0.8,
+          0.75,
           10
         ],
         22,
@@ -92,9 +94,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Happiness"],
-          0,
+          0.2,
           5,
-          0.8,
+          0.75,
           40
         ]
       ],
@@ -108,23 +110,53 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'none',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Happiness"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Happiness"],
+    //     0.2
+    //   ]
+    // ],
     'minzoom': zoomThreshold,
     'paint': {
-      'circle-color': "#ffd747",
+      'circle-color': [
+        "step",
+        ["get", "Happiness"],
+        "rgba(92, 103, 255, 0)",
+        0.3,
+        "#ffd747",
+        0.75,
+        "#ffd747"
+      ],
       'circle-radius': [
         "interpolate",
         ["linear"],
         ["zoom"],
         0,
-        1,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Happiness"],
+          0,
+          0,
+          0.75,
+          1
+        ],
+        8,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Happiness"],
+          0,
+          0,
+          0.2,
+          0,
+          0.4,
+          1,
+          0.75,
+          3
+        ],
         13,
         [
           "interpolate",
@@ -135,23 +167,9 @@ map.on('style.load', function() {
           0.2,
           2,
           0.4,
-          4,
-          0.8,
-          6
-        ],
-        17,
-        [
-          "interpolate",
-          ["linear"],
-          ["get", "Happiness"],
-          0,
-          0,
-          0.2,
           3,
-          0.4,
-          6,
-          0.8,
-          10
+          0.75,
+          5
         ],
         22,
         [
@@ -164,11 +182,19 @@ map.on('style.load', function() {
           6,
           0.4,
           10,
-          0.8,
+          0.75,
           20
         ]
       ],
-      'circle-stroke-width': 1,
+      'circle-stroke-width': [
+        "step",
+        ["get", "Happiness"],
+        0,
+        0.3,
+        1,
+        0.75,
+        1
+      ],
       'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
@@ -180,14 +206,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Sadness"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Sadness"],
+    //     0.2
+    //   ]
+    // ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -196,8 +222,8 @@ map.on('style.load', function() {
         ["get", "Sadness"],
         0,
         0,
-        0.1,
-        0.5,
+        0.05,
+        0,
         0.65,
         2
       ],
@@ -207,6 +233,8 @@ map.on('style.load', function() {
         ["linear"],
         ["heatmap-density"],
         0,
+        "rgba(0, 0, 255, 0)",
+        0.1,
         "rgba(0, 0, 255, 0)",
         1,
         "#19455E"
@@ -220,9 +248,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Sadness"],
-          0,
+          0.1,
           1,
-          0.8,
+          0.65,
           2
         ],
         13,
@@ -230,9 +258,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Sadness"],
-          0,
+          0.1,
           3,
-          0.8,
+          0.65,
           10
         ],
         22,
@@ -240,9 +268,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Sadness"],
-          0,
+          0.1,
           5,
-          0.8,
+          0.65,
           40
         ]
       ],
@@ -256,23 +284,53 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Sadness"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Sadness"],
+    //     0.2
+    //   ]
+    // ],
     'minzoom': zoomThreshold,
     'paint': {
-      'circle-color': "#19455E",
+      'circle-color': [
+        "step",
+        ["get", "Sadness"],
+        "rgba(92, 103, 255, 0)",
+        0.2,
+        "#19455E",
+        0.65,
+        "#19455E"
+      ],
       'circle-radius': [
         "interpolate",
         ["linear"],
         ["zoom"],
         0,
-        1,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Sadness"],
+          0,
+          0,
+          0.65,
+          1
+        ],
+        8,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Sadness"],
+          0,
+          0,
+          0.2,
+          0,
+          0.3,
+          1,
+          0.65,
+          3
+        ],
         13,
         [
           "interpolate",
@@ -282,24 +340,10 @@ map.on('style.load', function() {
           0,
           0.2,
           2,
-          0.4,
-          4,
-          0.8,
-          6
-        ],
-        17,
-        [
-          "interpolate",
-          ["linear"],
-          ["get", "Sadness"],
-          0,
-          0,
-          0.2,
+          0.3,
           3,
-          0.4,
-          6,
-          0.8,
-          10
+          0.65,
+          5
         ],
         22,
         [
@@ -310,13 +354,21 @@ map.on('style.load', function() {
           0,
           0.2,
           6,
-          0.4,
+          0.3,
           10,
-          0.8,
+          0.65,
           20
         ]
       ],
-      'circle-stroke-width': 1,
+      'circle-stroke-width': [
+        "step",
+        ["get", "Sadness"],
+        0,
+        0.2,
+        1,
+        0.65,
+        1
+      ],
       'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
@@ -328,14 +380,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Disgust"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Disgust"],
+    //     0.2
+    //   ]
+    // ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -345,7 +397,7 @@ map.on('style.load', function() {
         0,
         0,
         0.05,
-        0.5,
+        0,
         0.5,
         2
       ],
@@ -355,6 +407,8 @@ map.on('style.load', function() {
         ["linear"],
         ["heatmap-density"],
         0,
+        "rgba(0, 0, 255, 0)",
+        0.1,
         "rgba(0, 0, 255, 0)",
         1,
         "#4BA0A5"
@@ -368,9 +422,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Disgust"],
-          0,
+          0.1,
           1,
-          0.8,
+          0.5,
           2
         ],
         13,
@@ -378,9 +432,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Disgust"],
-          0,
+          0.1,
           3,
-          0.8,
+          0.5,
           10
         ],
         22,
@@ -388,9 +442,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Disgust"],
-          0,
+          0.1,
           10,
-          0.8,
+          0.5,
           40
         ]
       ],
@@ -404,23 +458,54 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Disgust"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Disgust"],
+    //     0.2
+    //   ]
+    // ],
     'minzoom': zoomThreshold,
     'paint': {
-      'circle-color': "#4BA0A5",
+      'circle-color':
+      [
+        "step",
+        ["get", "Disgust"],
+        "rgba(92, 103, 255, 0)",
+        0.2,
+        "#4BA0A5",
+        0.5,
+        "#4BA0A5"
+      ],
       'circle-radius': [
         "interpolate",
         ["linear"],
         ["zoom"],
         0,
-        1,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Disgust"],
+          0,
+          0,
+          0.5,
+          1
+        ],
+        8,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Disgust"],
+          0,
+          0,
+          0.2,
+          0,
+          0.3,
+          1,
+          0.5,
+          3
+        ],
         13,
         [
           "interpolate",
@@ -430,24 +515,10 @@ map.on('style.load', function() {
           0,
           0.2,
           2,
-          0.4,
-          4,
-          0.8,
-          6
-        ],
-        17,
-        [
-          "interpolate",
-          ["linear"],
-          ["get", "Disgust"],
-          0,
-          0,
-          0.2,
+          0.3,
           3,
-          0.4,
-          6,
-          0.8,
-          10
+          0.5,
+          5
         ],
         22,
         [
@@ -458,13 +529,21 @@ map.on('style.load', function() {
           0,
           0.2,
           6,
-          0.4,
+          0.3,
           10,
-          0.8,
+          0.5,
           20
         ]
       ],
-      'circle-stroke-width': 1,
+      'circle-stroke-width': [
+        "step",
+        ["get", "Disgust"],
+        0,
+        0.2,
+        1,
+        0.5,
+        1
+      ],
       'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
@@ -476,14 +555,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Surprise"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Surprise"],
+    //     0.2
+    //   ]
+    // ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -492,9 +571,9 @@ map.on('style.load', function() {
         ["get", "Surprise"],
         0,
         0,
-        0.1,
-        0.5,
-        0.25,
+        0.05,
+        0,
+        0.3,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -504,6 +583,8 @@ map.on('style.load', function() {
         ["heatmap-density"],
         0,
         "rgba(0, 0, 255, 0)",
+        0.1,
+        "rgba(248, 126, 73, 0)",
         1,
         "#F87C48"
       ],
@@ -516,9 +597,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Surprise"],
-          0,
+          0.1,
           1,
-          0.8,
+          0.5,
           2
         ],
         13,
@@ -526,9 +607,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Surprise"],
-          0,
+          0.1,
           3,
-          0.8,
+          0.5,
           10
         ],
         22,
@@ -536,9 +617,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Surprise"],
-          0,
+          0.1,
           5,
-          0.8,
+          0.5,
           40
         ]
       ],
@@ -562,13 +643,43 @@ map.on('style.load', function() {
     ],
     'minzoom': zoomThreshold,
     'paint': {
-      'circle-color': "#F87C48",
+      'circle-color': [
+        "step",
+        ["get", "Surprise"],
+        "rgba(92, 103, 255, 0)",
+        0.15,
+        "#F87C48",
+        0.3,
+        "#F87C48"
+      ],
       'circle-radius': [
         "interpolate",
         ["linear"],
         ["zoom"],
         0,
-        1,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Fear"],
+          0,
+          0,
+          0.3,
+          1
+        ],
+        8,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Surprise"],
+          0,
+          0,
+          0.1,
+          0,
+          0.2,
+          1,
+          0.4,
+          3
+        ],
         13,
         [
           "interpolate",
@@ -576,26 +687,12 @@ map.on('style.load', function() {
           ["get", "Surprise"],
           0,
           0,
-          0.2,
+          0.1,
           2,
-          0.4,
-          4,
-          0.8,
-          6
-        ],
-        17,
-        [
-          "interpolate",
-          ["linear"],
-          ["get", "Surprise"],
-          0,
-          0,
           0.2,
           3,
           0.4,
-          6,
-          0.8,
-          10
+          5
         ],
         22,
         [
@@ -604,15 +701,23 @@ map.on('style.load', function() {
           ["get", "Surprise"],
           0,
           0,
-          0.2,
+          0.1,
           6,
-          0.4,
+          0.2,
           10,
-          0.8,
+          0.4,
           20
         ]
       ],
-      'circle-stroke-width': 1,
+      'circle-stroke-width': [
+        "step",
+        ["get", "Surprise"],
+        0,
+        0.15,
+        1,
+        0.3,
+        1
+      ],
       'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
@@ -640,8 +745,8 @@ map.on('style.load', function() {
         ["get", "Anger"],
         0,
         0,
-        0.1,
-        0.5,
+        0.05,
+        0,
         0.55,
         2
       ],
@@ -651,6 +756,8 @@ map.on('style.load', function() {
         ["linear"],
         ["heatmap-density"],
         0,
+        "rgba(0, 0, 255, 0)",
+        0.1,
         "rgba(0, 0, 255, 0)",
         1,
         "#AB2377"
@@ -664,9 +771,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Anger"],
-          0,
+          0.1,
           1,
-          0.8,
+          0.55,
           2
         ],
         13,
@@ -674,9 +781,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Anger"],
-          0,
+          0.1,
           3,
-          0.8,
+          0.55,
           10
         ],
         22,
@@ -684,9 +791,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Anger"],
-          0,
+          0.1,
           5,
-          0.8,
+          0.55,
           40
         ]
       ],
@@ -700,23 +807,53 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Anger"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Anger"],
+    //     0.2
+    //   ]
+    // ],
     'minzoom': zoomThreshold,
     'paint': {
-      'circle-color': "#AB2377",
+      'circle-color': [
+        "step",
+        ["get", "Anger"],
+        "rgba(92, 103, 255, 0)",
+        0.2,
+        "#AB2377",
+        0.55,
+        "#AB2377"
+      ],
       'circle-radius': [
         "interpolate",
         ["linear"],
         ["zoom"],
         0,
-        1,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Anger"],
+          0,
+          0,
+          0.55,
+          1
+        ],
+        8,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Anger"],
+          0,
+          0,
+          0.2,
+          0,
+          0.3,
+          1,
+          0.55,
+          3
+        ],
         13,
         [
           "interpolate",
@@ -726,24 +863,10 @@ map.on('style.load', function() {
           0,
           0.2,
           2,
-          0.4,
-          4,
-          0.8,
-          6
-        ],
-        17,
-        [
-          "interpolate",
-          ["linear"],
-          ["get", "Anger"],
-          0,
-          0,
-          0.2,
+          0.3,
           3,
-          0.4,
-          6,
-          0.8,
-          10
+          0.55,
+          5
         ],
         22,
         [
@@ -754,13 +877,12 @@ map.on('style.load', function() {
           0,
           0.2,
           6,
-          0.4,
+          0.3,
           10,
-          0.8,
+          0.55,
           20
         ]
       ],
-      'circle-stroke-width': 1,
       'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
@@ -772,14 +894,14 @@ map.on('style.load', function() {
     'type': 'heatmap',
     'source': 'emotions',
     'visibility': 'none',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Fear"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Fear"],
+    //     0.2
+    //   ]
+    // ],
     'maxzoom': zoomThreshold,
     'paint': {
       'heatmap-weight': [
@@ -788,9 +910,9 @@ map.on('style.load', function() {
         ["get", "Fear"],
         0,
         0,
-        0.1,
-        0.5,
-        0.8,
+        0.05,
+        0,
+        0.75,
         2
       ],
       'heatmap-intensity': 0.5,
@@ -799,6 +921,8 @@ map.on('style.load', function() {
         ["linear"],
         ["heatmap-density"],
         0,
+        "rgba(0, 0, 255, 0)",
+        0.1,
         "rgba(0, 0, 255, 0)",
         1,
         "#5E69FF"
@@ -812,9 +936,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Fear"],
-          0,
+          0.1,
           1,
-          0.8,
+          0.75,
           2
         ],
         13,
@@ -822,9 +946,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Fear"],
-          0,
+          0.1,
           3,
-          0.95,
+          0.75,
           10
         ],
         22,
@@ -832,9 +956,9 @@ map.on('style.load', function() {
           "interpolate",
           ["linear"],
           ["get", "Fear"],
-          0,
+          0.1,
           5,
-          0.8,
+          0.75,
           40
         ]
       ],
@@ -848,23 +972,53 @@ map.on('style.load', function() {
     'type': 'circle',
     'source': 'emotions',
     'visibility': 'visible',
-    'filter': [
-      "all",
-      [
-        ">=",
-        ["get", "Fear"],
-        0.2
-      ]
-    ],
+    // 'filter': [
+    //   "all",
+    //   [
+    //     ">=",
+    //     ["get", "Fear"],
+    //     0.2
+    //   ]
+    // ],
     'minzoom': zoomThreshold,
     'paint': {
-      'circle-color': "#5E69FF",
+      'circle-color': [
+        "step",
+        ["get", "Fear"],
+        "rgba(92, 103, 255, 0)",
+        0.2,
+        "#5e69ff",
+        0.75,
+        "#5e69ff"
+      ],
       'circle-radius': [
         "interpolate",
         ["linear"],
         ["zoom"],
         0,
-        1,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Fear"],
+          0,
+          0,
+          0.75,
+          1
+        ],
+        8,
+        [
+          "interpolate",
+          ["linear"],
+          ["get", "Fear"],
+          0,
+          0,
+          0.2,
+          0,
+          0.4,
+          1,
+          0.75,
+          3
+        ],
         13,
         [
           "interpolate",
@@ -875,23 +1029,9 @@ map.on('style.load', function() {
           0.2,
           2,
           0.4,
-          4,
-          0.8,
-          6
-        ],
-        17,
-        [
-          "interpolate",
-          ["linear"],
-          ["get", "Fear"],
-          0,
-          0,
-          0.2,
           3,
-          0.4,
-          6,
-          0.8,
-          10
+          0.75,
+          5
         ],
         22,
         [
@@ -904,18 +1044,26 @@ map.on('style.load', function() {
           6,
           0.4,
           10,
-          0.8,
+          0.75,
           20
         ]
       ],
-      'circle-stroke-width': 1,
+      'circle-stroke-width': [
+        "step",
+        ["get", "Fear"],
+        0,
+        0.2,
+        1,
+        0.75,
+        1
+      ],
       'circle-stroke-color': "#ffffff",
       'circle-opacity': 0.75
     },
     'source-layer': 'p_Munich_merged-62mari',
   });
 
-  door_filter();
+  // door_filter();
 
 });
 

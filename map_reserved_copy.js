@@ -923,14 +923,11 @@ map.on('style.load', function() {
 const emotionLayers = ['Heatmap-happiness', 'Heatmap-sadness', 'Heatmap-disgust', 'Heatmap-surprise', 'Heatmap-anger', 'Heatmap-fear',
                       'Point-happiness', 'Point-sadness', 'Point-disgust', 'Point-surprise', 'Point-anger', 'Point-fear'];
 const emotionPointLayers = ['Point-happiness', 'Point-sadness', 'Point-disgust', 'Point-surprise', 'Point-anger', 'Point-fear'];
+const emotionHeatmapLayers = ['Heatmap-happiness', 'Heatmap-sadness', 'Heatmap-disgust', 'Heatmap-surprise', 'Heatmap-anger', 'Heatmap-fear'];
 
 // Define global variables to keep track of the current emotion and filter mode
 var currentEmotion = "happiness"; // Set the initial emotion
 var currentFilterMode = "all"; // Set the initial filter mode
-
-
-
-
 
 
 function emotion_change() {
@@ -992,6 +989,39 @@ function door_filter() {
   });
 
 };
+
+// function door_filter() {
+//   var filterMode = document.querySelector('input[name="toggle-door"]:checked').value;
+//
+//   var filter;
+//   if (filterMode === 'all') {
+//     // Reset the filter for all layers when 'all' is selected
+//     emotionLayers.forEach(function (layerId) {
+//       map.setFilter(layerId, null);
+//     });
+//     // Adjust the heatmap opacity to make it fully visible when 'all' is selected
+//     map.setPaintProperty(emotionHeatmapLayers, 'heatmap-opacity', 0.6);
+//   } else {
+//     filter = ['match', ['get', 'indoor_outdoor'], 2, filterMode === 'outdoor', filterMode === 'indoor'];
+//
+//     // Apply the filter to all layers except for those with 'Heatmap' in their IDs
+//     emotionLayers.forEach(function (layerId) {
+//       if (!layerId.includes('Heatmap')) {
+//         map.setFilter(layerId, filter);
+//       }
+//     });
+//
+//     // Adjust the heatmap opacity to make it partially visible when filtered
+//     map.setPaintProperty(emotionHeatmapLayers, 'heatmap-opacity', 0.2);
+//   }
+//
+//   // Update the global variable with the current filter mode
+//   currentFilterMode = filterMode;
+//   // Apply the filter based on the current emotion
+//   emotionLayers.forEach(function (layerId, index) {
+//     map.setFilter(layerId, emotionMap[currentEmotion][index]);
+//   });
+// };
 
 emotionPointLayers.forEach(function(layerId, index){
   map.on('click', layerId, function(e) {
